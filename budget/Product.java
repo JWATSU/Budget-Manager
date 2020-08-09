@@ -1,21 +1,11 @@
 package budget;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-
 public class Product
 {
     private final double price;
     private final String description;
-    private final static DecimalFormat formatter = new DecimalFormat("#0.00");
     private ProductCategory productCategory;
 
-    static
-    {
-        DecimalFormatSymbols dfs = formatter.getDecimalFormatSymbols();
-        dfs.setDecimalSeparator('.');
-        formatter.setDecimalFormatSymbols(dfs);
-    }
 
     Product(String description, double price, int productCategory)
     {
@@ -59,6 +49,6 @@ public class Product
     @Override
     public String toString()
     {
-        return description + " $" + formatter.format(price);
+        return description + " $" + price;
     }
 }

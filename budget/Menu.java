@@ -6,6 +6,7 @@ public class Menu
 {
     private final BudgetManager budgetManager = new BudgetManager();
     private final Scanner scanner = new Scanner(System.in);
+    private final FileManager fileManager = new FileManager();
 
     public Menu()
     {
@@ -22,6 +23,8 @@ public class Menu
                     "2) Add purchase\n" +
                     "3) Show list of purchases\n" +
                     "4) Balance\n" +
+                    "5) Save\n" +
+                    "6) Load\n" +
                     "0) Exit");
 
             int answer = Integer.parseInt(scanner.nextLine());
@@ -29,10 +32,7 @@ public class Menu
             switch (answer)
             {
                 case 1:
-                    System.out.println("\nEnter income:");
-                    int income = Integer.parseInt(scanner.nextLine());
-                    budgetManager.addIncome(income);
-                    System.out.println("Income was added!\n");
+                    addIncome();
                     break;
                 case 2:
                     addPurchase();
@@ -50,7 +50,15 @@ public class Menu
         }
     }
 
-    public void getPurchases()
+    private void addIncome()
+    {
+        System.out.println("\nEnter income:");
+        int income = Integer.parseInt(scanner.nextLine());
+        budgetManager.addIncome(income);
+        System.out.println("Income was added!\n");
+    }
+
+    private void getPurchases()
     {
         if (budgetManager.getAmountOfPurchases() == 0)
         {
@@ -94,15 +102,14 @@ public class Menu
                             break;
                     }
                 }
-            }
-            catch (NumberFormatException e)
+            } catch (NumberFormatException e)
             {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public void addPurchase()
+    private void addPurchase()
     {
         while (true)
         {
@@ -125,10 +132,10 @@ public class Menu
                 System.out.println("Enter its price:");
                 double price = Double.parseDouble(scanner.nextLine());
                 budgetManager.addPurchase(productName, price, category);
-                System.out.println("Purchase was added!\n");
-            }
-            catch (NumberFormatException e)
+                System.out.println("Purchase was added!");
+            } catch (NumberFormatException e)
             {
+                System.out.println(e.getMessage());
                 break;
             }
         }
