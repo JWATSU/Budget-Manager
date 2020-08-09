@@ -21,6 +21,11 @@ public class BudgetManager
         balance -= price;
     }
 
+    public List<Product> getPurchases()
+    {
+        return purchases;
+    }
+
     public void addIncome(double income)
     {
         balance += income;
@@ -38,14 +43,13 @@ public class BudgetManager
             {
                 System.out.println(product);
             }
-            System.out.println("Total sum: $" + sumOfPurchases);
+            System.out.printf("Total sum: $%.2f\n", sumOfPurchases);
         }
     }
 
     public void displayPurchases(String type)
     {
         double sum = 0;
-        System.out.println(type + ":");
         ArrayList<Product> categoryList = new ArrayList<>();
         for (Product product : purchases)
         {
@@ -61,11 +65,12 @@ public class BudgetManager
 
         } else
         {
+            System.out.println(type + ":");
             for (Product product : purchases)
             {
                 System.out.println(product);
             }
-            System.out.println("Total sum: $" + sum);
+            System.out.printf("Total sum: $%.2f\n", sum);
         }
     }
 
@@ -78,8 +83,8 @@ public class BudgetManager
         System.out.printf("\nBalance: $%.2f\n\n", balance);
     }
 
-    public int getAmountOfPurchases()
+    public double getBalance()
     {
-        return purchases.size();
+        return balance;
     }
 }

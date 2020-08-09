@@ -43,6 +43,12 @@ public class Menu
                 case 4:
                     budgetManager.displayBalance();
                     break;
+                case 5:
+                    fileManager.writeToFile(budgetManager);
+                    break;
+                case 6:
+                    fileManager.saveToFile(budgetManager);
+                    break;
                 case 0:
                     System.out.println("\nBye!");
                     continueLoop = false;
@@ -53,14 +59,14 @@ public class Menu
     private void addIncome()
     {
         System.out.println("\nEnter income:");
-        int income = Integer.parseInt(scanner.nextLine());
+        double income = Double.parseDouble(scanner.nextLine());
         budgetManager.addIncome(income);
         System.out.println("Income was added!\n");
     }
 
     private void getPurchases()
     {
-        if (budgetManager.getAmountOfPurchases() == 0)
+        if (budgetManager.getPurchases().size() == 0)
         {
             System.out.println("\nPurchase list is empty!\n");
             return;

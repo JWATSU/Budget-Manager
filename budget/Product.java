@@ -49,6 +49,6 @@ public class Product
     @Override
     public String toString()
     {
-        return description + " $" + price;
+        return String.format("%s $%.2f", description, price);
     }
 }
