@@ -47,7 +47,7 @@ public class Menu
                     fileManager.writeToFile(budgetManager);
                     break;
                 case 6:
-                    fileManager.saveToFile(budgetManager);
+                    fileManager.loadFromFile(budgetManager);
                     break;
                 case 0:
                     System.out.println("\nBye!");

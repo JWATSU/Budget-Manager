@@ -6,7 +6,7 @@ import java.util.List;
 public class BudgetManager
 {
     private double balance = 0;
-    private double sumOfPurchases = 0;
+    private double total = 0;
     private final List<Product> purchases = new ArrayList<>();
 
     public BudgetManager()
@@ -17,8 +17,7 @@ public class BudgetManager
     public void addPurchase(String productName, double price, int productCategory)
     {
         purchases.add(new Product(productName, price, productCategory));
-        sumOfPurchases += price;
-        balance -= price;
+        total += price;
     }
 
     public List<Product> getPurchases()
@@ -43,7 +42,7 @@ public class BudgetManager
             {
                 System.out.println(product);
             }
-            System.out.printf("Total sum: $%.2f\n", sumOfPurchases);
+            System.out.printf("Total sum: $%.2f\n", total);
         }
     }
 
@@ -66,7 +65,7 @@ public class BudgetManager
         } else
         {
             System.out.println(type + ":");
-            for (Product product : purchases)
+            for (Product product : categoryList)
             {
                 System.out.println(product);
             }
@@ -80,11 +79,21 @@ public class BudgetManager
         {
             balance = 0;
         }
-        System.out.printf("\nBalance: $%.2f\n\n", balance);
+        System.out.printf("\nBalance: $%.2f\n\n", balance - total);
     }
 
     public double getBalance()
     {
         return balance;
+    }
+
+    public void setBalance(double balance)
+    {
+        this.balance = balance;
+    }
+
+    public void setTotal(double total)
+    {
+        this.total = total;
     }
 }

@@ -33,12 +33,12 @@ public class Product
 
     double getPrice()
     {
-        return this.price;
+        return price;
     }
 
     String getDescription()
     {
-        return this.description;
+        return description;
     }
 
     public ProductCategory getProductCategory()
