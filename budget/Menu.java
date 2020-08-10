@@ -25,6 +25,7 @@ public class Menu
                     "4) Balance\n" +
                     "5) Save\n" +
                     "6) Load\n" +
+                    "7) Analyze (Sort)\n" +
                     "0) Exit");
 
             int answer = Integer.parseInt(scanner.nextLine());
@@ -49,6 +50,9 @@ public class Menu
                 case 6:
                     fileManager.loadFromFile(budgetManager);
                     break;
+                case 7:
+                    sortPurchases();
+                    break;
                 case 0:
                     System.out.println("\nBye!");
                     continueLoop = false;
@@ -62,6 +66,39 @@ public class Menu
         double income = Double.parseDouble(scanner.nextLine());
         budgetManager.addIncome(income);
         System.out.println("Income was added!\n");
+    }
+
+    private void sortPurchases()
+    {
+        while (true)
+        {
+            System.out.println("\nHow do you want to sort?\n" +
+                    "1) Sort all purchases\n" +
+                    "2) Sort by type\n" +
+                    "3) Sort certain type\n" +
+                    "4) Back");
+            int sortingType = Integer.parseInt(scanner.nextLine());
+            System.out.println();
+            if (sortingType == 4 || sortingType < 1 || sortingType > 4)
+            {
+                return;
+            } else
+            {
+                switch (sortingType)
+                {
+                    case 1:
+                        budgetManager.sortAllPurchases();
+                        break;
+                    case 2:
+                        budgetManager.sortAllProductCategories();
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        return;
+                }
+            }
+        }
     }
 
     private void getPurchases()

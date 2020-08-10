@@ -1,7 +1,6 @@
 package budget;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BudgetManager
 {
@@ -95,5 +94,47 @@ public class BudgetManager
     public void setTotal(double total)
     {
         this.total = total;
+    }
+
+    public void sortAllPurchases()
+    {
+        if (purchases.size() == 0)
+        {
+            System.out.println("Purchase list is empty!");
+        } else
+        {
+            purchases.sort(Comparator.comparingDouble(Product::getPrice).reversed());
+            displayPurchases();
+        }
+    }
+
+    public void sortAllProductCategories()
+    {
+        HashMap<String, Double> categoriesAndValues = new HashMap<>();
+        String[] productCategories = {"Food", "Entertainment", "Clothes", "Other"};
+
+        for (String category : productCategories)
+        {
+            double sum = 0;
+            for (Product product : purchases)
+            {
+                if (product.getProductCategory() == ProductCategory.valueOf(category.toUpperCase()))
+                {
+                    sum += product.getPrice();
+                }
+                categoriesAndValues.put(category, sum);
+            }
+        }
+        List<Map.Entry<String, Double>> entries = new ArrayList<>(categoriesAndValues.entrySet());
+        Collections.sort(entries, (e1, e2) -> e2.getValue().compareTo(e1.getValue()));
+
+        System.out.println("Types:");
+
+        for (Map.Entry<String, Double> entry : entries)
+        {
+            System.out.printf("%s - $%.2f\n", entry.getKey(), entry.getValue());
+        }
+        System.out.printf("Total sum: $%.2f\n", total);
+
     }
 }

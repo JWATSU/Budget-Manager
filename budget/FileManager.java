@@ -31,6 +31,7 @@ public class FileManager
             System.out.println("Purchases were saved!");
         } catch (IOException e)
         {
+            System.out.println("Error when writing to file: ");
             e.printStackTrace();
         }
     }
