@@ -93,6 +93,13 @@ public class Menu
                         budgetManager.sortAllProductCategories();
                         break;
                     case 3:
+                        System.out.println("Choose the type of purchase\n" +
+                                "1) Food\n" +
+                                "2) Clothes\n" +
+                                "3) Entertainment\n" +
+                                "4) Other");
+                        int category = Integer.parseInt(scanner.nextLine());
+                        budgetManager.sortAllPurchasesInCategory(category);
                         break;
                     case 4:
                         return;

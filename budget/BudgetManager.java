@@ -108,9 +108,45 @@ public class BudgetManager
         }
     }
 
+    public void sortAllPurchasesInCategory(int category)
+    {
+        if (purchases.size() == 0)
+        {
+            System.out.println("\nPurchase list is empty!");
+        } else
+        {
+            List<Product> purchasesInCategory = new ArrayList<>();
+            ProductCategory productCategory = ProductCategory.values()[category - 1];
+            for (Product product : purchases)
+            {
+                if (product.getProductCategory() == productCategory)
+                {
+                    purchasesInCategory.add(product);
+                }
+            }
+            purchasesInCategory.sort(Comparator.comparingDouble(Product::getPrice).reversed());
+            double sum = 0.00;
+
+            System.out.println("\n" + productCategory.toString() + ":");
+
+            for (Product product : purchasesInCategory)
+            {
+                sum += product.getPrice();
+                System.out.printf("%s $%.2f\n", product.getDescription(), product.getPrice());
+            }
+            System.out.printf("Total sum: $%.2f\n", sum);
+
+        }
+    }
+
     public void sortAllProductCategories()
     {
-        HashMap<String, Double> categoriesAndValues = new HashMap<>();
+        Map<String, Double> categoriesAndValues = new HashMap<>();
+        categoriesAndValues.put("Food", 0.0);
+        categoriesAndValues.put("Entertainment", 0.0);
+        categoriesAndValues.put("Clothes", 0.0);
+        categoriesAndValues.put("Other", 0.0);
+
         String[] productCategories = {"Food", "Entertainment", "Clothes", "Other"};
 
         for (String category : productCategories)
