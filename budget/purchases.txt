@@ -1,0 +1,5 @@
+100.0
+Electric thngy,50.56,4
+Jacket,35.5,2
+Movie Ticket,10.2,3
+Coca Cola,1.5,1
