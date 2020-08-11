@@ -6,7 +6,6 @@ public class Product
     private final String description;
     private ProductCategory productCategory;
 
-
     Product(String description, double price, int productCategory)
     {
         this.description = description;

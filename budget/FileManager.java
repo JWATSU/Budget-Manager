@@ -5,10 +5,11 @@ import java.util.Scanner;
 
 public class FileManager
 {
-    private final File file = new File("purchases.txt");
+    private final File file;
 
-    public FileManager()
+    public FileManager(String fileName)
     {
+        this.file = new File(fileName);
         try
         {
             file.createNewFile();
@@ -55,11 +56,5 @@ public class FileManager
         {
             System.out.println("No file found: " + file.getAbsolutePath());
         }
-
-    }
-
-    public File getFile()
-    {
-        return file;
     }
 }

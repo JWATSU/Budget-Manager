@@ -6,11 +6,11 @@ public class Menu
 {
     private final BudgetManager budgetManager = new BudgetManager();
     private final Scanner scanner = new Scanner(System.in);
-    private final FileManager fileManager = new FileManager();
+    private final FileManager fileManager;
 
-    public Menu()
+    public Menu(FileManager fileManager)
     {
-
+        this.fileManager = fileManager;
     }
 
     public void displayMenu()
@@ -76,9 +76,10 @@ public class Menu
                     "1) Sort all purchases\n" +
                     "2) Sort by type\n" +
                     "3) Sort certain type\n" +
-                    "4) Back");
+                    "4) Back\n");
+
             int sortingType = Integer.parseInt(scanner.nextLine());
-            System.out.println();
+
             if (sortingType == 4 || sortingType < 1 || sortingType > 4)
             {
                 return;

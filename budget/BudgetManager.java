@@ -8,11 +8,6 @@ public class BudgetManager
     private double total = 0;
     private final List<Product> purchases = new ArrayList<>();
 
-    public BudgetManager()
-    {
-
-    }
-
     public void addPurchase(String productName, double price, int productCategory)
     {
         purchases.add(new Product(productName, price, productCategory));
