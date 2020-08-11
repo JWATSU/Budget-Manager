@@ -13,7 +13,7 @@ public class Menu
         this.fileManager = fileManager;
     }
 
-    public void displayMenu()
+    public void displayMenuAndHandleUserInput()
     {
         boolean continueLoop = true;
         while (continueLoop)
@@ -28,9 +28,17 @@ public class Menu
                     "7) Analyze (Sort)\n" +
                     "0) Exit");
 
-            int answer = Integer.parseInt(scanner.nextLine());
+            int userMenuChoice;
+            try
+            {
+                userMenuChoice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e)
+            {
+                System.out.println("\nInvalid input: Please enter one of the choices displayed.\n");
+                continue;
+            }
 
-            switch (answer)
+            switch (userMenuChoice)
             {
                 case 1:
                     addIncome();
@@ -56,6 +64,8 @@ public class Menu
                 case 0:
                     System.out.println("\nBye!");
                     continueLoop = false;
+                default:
+                    System.out.println("\nInvalid input: Please enter one of the choices displayed.\n");
             }
         }
     }
@@ -63,7 +73,20 @@ public class Menu
     private void addIncome()
     {
         System.out.println("\nEnter income:");
-        double income = Double.parseDouble(scanner.nextLine());
+        double income;
+        try
+        {
+            income = Double.parseDouble(scanner.nextLine());
+            if (income <= 0)
+            {
+                System.out.println("\nInvalid input: Please enter a positive number.\n");
+                return;
+            }
+        } catch (NumberFormatException e)
+        {
+            System.out.println("\nInvalid input: Please enter a positive number.\n");
+            return;
+        }
         budgetManager.addIncome(income);
         System.out.println("Income was added!\n");
     }
@@ -166,28 +189,45 @@ public class Menu
         {
             try
             {
-                System.out.println("\nChoose the type of purchase\n" +
+                System.out.println("Choose the type of purchase\n" +
                         "1) Food\n" +
                         "2) Clothes\n" +
                         "3) Entertainment\n" +
                         "4) Other\n" +
                         "5) Back");
                 int category = Integer.parseInt(scanner.nextLine());
-                if (category == 5 || category < 1 || category > 5)
+
+                if (category < 1 || category > 6)
                 {
-                    System.out.println();
-                    return;
+                    System.out.println("Invalid input: Please enter one of the choices displayed.");
+                    continue;
+                }
+                if (category == 5)
+                {
+                    break;
                 }
                 System.out.println("\nEnter purchase name:");
                 String productName = scanner.nextLine();
                 System.out.println("Enter its price:");
                 double price = Double.parseDouble(scanner.nextLine());
+
+                if (price <= 0)
+                {
+                    System.out.println("\nPrice must be a positive number.\n");
+                    continue;
+                }
+
+                if ((budgetManager.getBalance() - price) < 0)
+                {
+                    System.out.println("\nNot enough money to process purchase:");
+                    budgetManager.displayBalance();
+                    continue;
+                }
                 budgetManager.addPurchase(productName, price, category);
                 System.out.println("Purchase was added!");
             } catch (NumberFormatException e)
             {
-                System.out.println(e.getMessage());
-                break;
+                System.out.println("\nInvalid input: Please try again.\n");
             }
         }
     }

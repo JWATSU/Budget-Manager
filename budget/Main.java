@@ -10,6 +10,6 @@ public class Main
         String fileName = "Budget Manager\\task\\src\\budget\\purchases.txt";
 
         Menu menu = new Menu(new FileManager(fileName));
-        menu.displayMenu();
+        menu.displayMenuAndHandleUserInput();
     }
 }

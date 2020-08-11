@@ -69,10 +69,6 @@ public class BudgetManager
 
     public void displayBalance()
     {
-        if (balance < 0)
-        {
-            balance = 0;
-        }
         System.out.printf("\nBalance: $%.2f\n\n", balance - total);
     }
 
