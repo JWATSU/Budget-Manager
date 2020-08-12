@@ -41,13 +41,13 @@ public class Menu
             switch (userMenuChoice)
             {
                 case 1:
-                    addIncome();
+                    addIncomeMenu();
                     break;
                 case 2:
-                    addPurchase();
+                    addPurchaseMenu();
                     break;
                 case 3:
-                    getPurchases();
+                    getPurchasesMenu();
                     break;
                 case 4:
                     budgetManager.displayBalance();
@@ -59,7 +59,7 @@ public class Menu
                     fileManager.loadFromFile(budgetManager);
                     break;
                 case 7:
-                    sortPurchases();
+                    sortPurchasesMenu();
                     break;
                 case 0:
                     System.out.println("\nBye!");
@@ -70,7 +70,7 @@ public class Menu
         }
     }
 
-    private void addIncome()
+    private void addIncomeMenu()
     {
         System.out.println("\nEnter income:");
         double income;
@@ -91,23 +91,30 @@ public class Menu
         System.out.println("Income was added!\n");
     }
 
-    private void sortPurchases()
+    private void sortPurchasesMenu()
     {
         while (true)
         {
-            System.out.println("\nHow do you want to sort?\n" +
-                    "1) Sort all purchases\n" +
-                    "2) Sort by type\n" +
-                    "3) Sort certain type\n" +
-                    "4) Back\n");
-
-            int sortingType = Integer.parseInt(scanner.nextLine());
-
-            if (sortingType == 4 || sortingType < 1 || sortingType > 4)
+            try
             {
-                return;
-            } else
-            {
+                System.out.println("\nHow do you want to sort?\n" +
+                        "1) Sort all purchases\n" +
+                        "2) Sort by type\n" +
+                        "3) Sort certain type\n" +
+                        "4) Back");
+
+                int sortingType = Integer.parseInt(scanner.nextLine());
+
+                if (sortingType < 1 || sortingType > 4)
+                {
+                    System.out.println("Invalid input: Please enter one of the choices displayed.");
+                    continue;
+                }
+                if (sortingType == 4)
+                {
+                    return;
+                }
+
                 switch (sortingType)
                 {
                     case 1:
@@ -123,16 +130,24 @@ public class Menu
                                 "3) Entertainment\n" +
                                 "4) Other");
                         int category = Integer.parseInt(scanner.nextLine());
+                        if (category < 1 || category > 4)
+                        {
+                            System.out.println("Invalid input: Please enter one of the choices displayed.");
+                            continue;
+                        }
                         budgetManager.sortAllPurchasesInCategory(category);
                         break;
                     case 4:
                         return;
                 }
+            } catch (NumberFormatException e)
+            {
+                System.out.println("\nInvalid input: Please try again.");
             }
         }
     }
 
-    private void getPurchases()
+    private void getPurchasesMenu()
     {
         if (budgetManager.getPurchases().size() == 0)
         {
@@ -150,40 +165,45 @@ public class Menu
                         "4) Other\n" +
                         "5) All\n" +
                         "6) Back");
-                int type = Integer.parseInt(scanner.nextLine());
+                int categoryChoice = Integer.parseInt(scanner.nextLine());
                 System.out.println();
-                if (type == 6 || type < 1 || type > 6)
+                if (categoryChoice < 1 || categoryChoice > 6)
+                {
+                    System.out.println("Invalid input: Please enter one of the choices displayed.");
+                    continue;
+                }
+                if (categoryChoice == 6)
                 {
                     return;
-                } else
-                {
-                    switch (type)
-                    {
-                        case 1:
-                            budgetManager.displayPurchases("Food");
-                            break;
-                        case 2:
-                            budgetManager.displayPurchases("Clothes");
-                            break;
-                        case 3:
-                            budgetManager.displayPurchases("Entertainment");
-                            break;
-                        case 4:
-                            budgetManager.displayPurchases("Other");
-                            break;
-                        case 5:
-                            budgetManager.displayPurchases();
-                            break;
-                    }
                 }
+
+                switch (categoryChoice)
+                {
+                    case 1:
+                        budgetManager.displayPurchases("Food");
+                        break;
+                    case 2:
+                        budgetManager.displayPurchases("Clothes");
+                        break;
+                    case 3:
+                        budgetManager.displayPurchases("Entertainment");
+                        break;
+                    case 4:
+                        budgetManager.displayPurchases("Other");
+                        break;
+                    case 5:
+                        budgetManager.displayPurchases();
+                        break;
+                }
+
             } catch (NumberFormatException e)
             {
-                System.out.println(e.getMessage());
+                System.out.println("\nInvalid input: Please try again.");
             }
         }
     }
 
-    private void addPurchase()
+    private void addPurchaseMenu()
     {
         while (true)
         {

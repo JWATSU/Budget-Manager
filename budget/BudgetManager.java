@@ -133,10 +133,11 @@ public class BudgetManager
     public void sortAllProductCategories()
     {
         Map<String, Double> categoriesAndValues = new HashMap<>();
-        categoriesAndValues.put("Food", 0.0);
-        categoriesAndValues.put("Entertainment", 0.0);
-        categoriesAndValues.put("Clothes", 0.0);
-        categoriesAndValues.put("Other", 0.0);
+
+        for (ProductCategory productCategory : ProductCategory.values())
+        {
+            categoriesAndValues.put(productCategory.toString(), 0.0);
+        }
 
         String[] productCategories = {"Food", "Entertainment", "Clothes", "Other"};
 
