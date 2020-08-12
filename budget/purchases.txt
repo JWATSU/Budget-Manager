@@ -1,16 +1,16 @@
 650.0
-Coca Cola,1.5,1
-Kiwi,0.8,1
-Hamburgers,8.5,1
-Dressing,2.0,1
-Potato Chips,2.23,1
-Hat,10.5,2
-Jeans,30.0,2
-Sunglasses,77.5,2
-Socks - 3pack,13.0,2
-Xbox game console,300.0,3
-Xbox game,40.0,3
-Deck of cards,6.62,3
-Board game,12.0,3
-Toilet paper,22.0,4
-Batteries -10pack,16.3,4
+Coca Cola;1.5;1
+Kiwi;0.8;1
+Hamburgers;8.5;1
+Dressing;2.0;1
+Potato Chips;2.23;1
+Hat;10.5;2
+Jeans;30.0;2
+Sunglasses;77.5;2
+Socks - 3pack;13.0;2
+Xbox game console;300.0;3
+Xbox game;40.0;3
+Deck of cards;6.62;3
+Board game;12.0;3
+Toilet paper;22.0;4
+Batteries -10pack;16.3;4

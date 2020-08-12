@@ -27,7 +27,7 @@ public class FileManager
             for (Product product : budgetManager.getPurchases())
             {
                 // We need to add +1 to the ordinal value to get the correct category. The code should probably be rewritten so that we don't have to do this.
-                writer.println(product.getDescription() + "," + product.getPrice() + "," + (product.getProductCategory().ordinal() + 1));
+                writer.println(product.getDescription() + ";" + product.getPrice() + ";" + (product.getProductCategory().ordinal() + 1));
             }
             System.out.println("Purchases were saved!");
         } catch (IOException e)
@@ -47,7 +47,7 @@ public class FileManager
             budgetManager.setBalance(Double.parseDouble(scanner.nextLine()));
             while (scanner.hasNext())
             {
-                String[] productInfo = scanner.nextLine().split(",");
+                String[] productInfo = scanner.nextLine().split(";");
                 budgetManager.addPurchase(productInfo[0], Double.parseDouble(productInfo[1]), Integer.parseInt(productInfo[2]));
             }
 
